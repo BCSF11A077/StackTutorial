@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNet.Identity
+
+@{    
+
+if (Session["name"]==null)
+{
+ 
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Signup", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+else
+{
+    
+    if (Session["email"].Equals("Admin@gmail.com"))
+    {
+
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Admin Panel", "Index", "Admin", routeValues: null, htmlAttributes: new { id = "IndexLink" })</li>
+
+            <li>@Html.ActionLink("Log out", "logout", "Account", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
+        </ul>
+
+
+
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+           
+
+            <li>@Html.ActionLink("Log out", "logout", "Account", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
+        </ul>
+    }
+}
+}
+

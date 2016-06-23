@@ -1,0 +1,110 @@
+﻿@model StackTutorial.Models.User
+@{
+    ViewBag.Title = "Register";
+}
+
+	<h3> Registration</h3>	
+@Scripts.Render("~/bundles/jquery")
+
+   
+	<form class="form-horizontal" method="post" action="/Account/Signup" enctype="multipart/form-data">
+
+        @Html.ValidationSummary(true)
+
+        
+            <div class="control-group">
+                <label class="control-label" for="name">User Name <sup>*</sup></label>
+                <div class="controls">
+                    <div class="editor-field">@Html.TextBoxFor(u => u.name, new { placeholder = "User Name" })</div>
+                    @Html.ValidationMessageFor(u => u.name)
+                </div>
+            </div>
+
+        <div class="row">
+
+            <div class="control-group col-md-4">
+
+                <label class="control-label" for="email">Email <sup>*</sup></label>
+                <div class="controls">
+                    <div class="editor-field">@Html.TextBoxFor(u => u.email, new { placeholder = "Email" })</div>
+                    @Html.ValidationMessageFor(u => u.email)
+                </div>
+            </div>
+            <div class="col-md-1">
+                <input class="btn btn-success" type="button" id="b" value="Check" />
+            </div>
+            
+            <div class="col-md-2">
+                <div id="checking">Checking...</div>
+            </div>
+                <div class="col-md-3">
+                    <div id="result"></div>
+                    <script>
+
+                        $(document).ready(function () {
+
+                            $('#checking').hide();
+                            $('#b').click(function () {
+
+                                var userName = $('#email').val();
+
+                                $('#checking').show();
+                                $.getJSON("/Account/CheckUserName?e=" + userName, function (data) {
+
+                                    $('#checking').hide();
+                                    $('#result').text(data);
+                                });
+                                
+                            });
+
+
+                        });
+                    </script>
+
+
+
+
+                </div>
+
+            </div>
+
+
+            <div class="control-group">
+                <label class="control-label" for="pass">Password <sup>*</sup></label>
+                <div class="controls">
+                    <div class="editor-field">@Html.PasswordFor(u => u.pass, new { placeholder = "Password" })</div>
+                    @Html.ValidationMessageFor(u => u.pass)
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="Cpass">Confirm Password <sup>*</sup></label>
+                <div class="controls">
+                    <div class="editor-field">@Html.PasswordFor(u => u.Cpass, new { placeholder = "Retype Password" })</div>
+                    @Html.ValidationMessageFor(u => u.Cpass)
+                </div>
+            </div>
+
+
+
+            <div class="control-group">
+                <label class="control-label">Upload Profile Pic <sup>*</sup></label>
+
+                <div class="controls">
+                    <input type="file" name="image" />
+                </div>
+            </div>
+
+
+
+            <div class="control-group">
+                <div class="controls">
+
+                    <input class="btn btn-large" type="submit" id="displayinmodal" value="Register" />
+                </div>
+            </div>
+
+
+
+</form>
+

@@ -1,0 +1,84 @@
+﻿
+    @{
+        ViewBag.Title = "Ask Question";
+    }
+<h4> <p align="right"> @ViewBag.x.session</p></h4>
+    <h2>Ask Question</h2>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#saveQues").click(function (event) {
+
+                var x = $("#name").val();
+
+                if (x == "") {
+                    $('<div>' + "<b>Title required</b>" + '</div>').dialog();
+                }
+                var c = $("#content").val();
+                if (c == "") {
+                    $('<div>' + "<b>Question field required!</b>" + '</div>').dialog();
+                }
+                var t = $("#tags").val();
+                if (t == "") {
+                    $('<div>' + "<b>Select a Tag! </b>" + '</div>').dialog();
+                }
+            });
+
+        }
+
+
+
+            );
+
+
+    </script>
+
+
+    <div id="errorSaveQuestion">
+
+    </div>
+
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        <span class="glyphicon glyphicon-file"></span>&nbsp;Ask a Question
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <form method="post" action="/Home/SaveQ/" id="askQues">
+
+
+                        <div class="form-group">
+                            <textarea class="textarea form-control" cols="20" id="Ques" name="Ques" placeholder="Enter your text ..." rows="5" required></textarea>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="tags">
+                                Tags
+                            </label>
+                            <input autofocus="" class="form-control" id="tags" name="tags" placeholder="Example: C++ or html" type="text" value="" required/>
+
+                        </div>
+                        <div class="form-group">
+
+                            <button type="submit" class="btn btn-success btn-sm" id="save">
+                                <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Ask
+                            </button>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

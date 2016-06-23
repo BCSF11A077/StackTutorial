@@ -1,0 +1,47 @@
+﻿ @model StackTutorial.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+<h3> Login</h3>
+
+             
+             <!DOCTYPE HTML>
+                <html lang="en">
+                <head>
+                    <meta charset="utf-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+                    <title>SignIn Page</title>
+                    <link rel="stylesheet" href="~/content/layout.css">
+                    <link rel="stylesheet" href="~/content/style3.css">
+
+                    
+                </head>
+
+                <body>
+                    <div class="container">
+                        <section class="register">
+                            @Html.ValidationSummary(true)
+                            <form name="Form1" method="post" action="/Account/login" onsubmit="return validateForm()">
+
+                                <input type="text" name="email" value="" placeholder="email@domain" required>
+                                @Html.ValidationMessageFor(u => u.email)
+                                <br>
+                                <br>
+                                <input type="password" name="pass" value="" placeholder="Password" required>
+                                @Html.ValidationMessageFor(u => u.pass)
+                                <hr>
+                                <p class="submit"><input class="btn btn-success" type="submit" name="signin" value="Sign In"></p>
+
+                            </form>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <a href="@Url.Content("/Account/forgetpass")">Forget password?</a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </body>
+            </html>
+
+

@@ -1,0 +1,68 @@
+﻿<h4> <p align="right"> @ViewBag.x.session</p></h4>
+    @{
+        
+        ViewBag.Title = "Tags";
+        
+}
+@*@Model List<stacktutorial.models.article>*@
+    <div class="nav-tabs">
+        <ul class="nav nav-tabs">
+
+            <li><a data-toggle="tab" href="#c">C#</a></li>
+            <li><a data-toggle="tab" href="#j">Java</a></li>
+            <li><a data-toggle="tab" href="#and">Android</a></li>
+            <li><a data-toggle="tab" href="#cc">Compiler</a></li>
+            <li><a data-toggle="tab" href="#html">HTML/CSS</a></li>
+            <li class=" active"><a data-toggle="tab" href="#b">C++</a></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div id="b" class="tab-pane fade in active">
+            
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>Articles</h4></div>
+                <div class="panel-body">
+
+                    @foreach (var s in Model)
+                    {
+
+
+                        <h4>Title: @s.title</h4>
+                        <p><h4>Article: </h4>@s.Art</p>
+                        <h4><p>Posted by: @s.User.name</p></h4>
+
+                        <br>
+                        <br>
+
+                    }
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <div id="c" class="tab-pane fade">
+            
+
+        </div>
+        <div id="j" class="tab-pane fade in active">
+            
+
+        </div>
+        <div id="and" class="tab-pane fade">
+            
+
+        </div>
+        <div id="cc" class="tab-pane fade in active">
+            
+
+        </div>
+        <div id="html" class="tab-pane fade">
+            
+
+        </div>
+    </div>

@@ -1,0 +1,18 @@
+﻿@model StackTutorial.Models.User
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+<form name="Form1" method="post" action="/Admin/AddUser" >
+
+    <input type="text" name="email" value="" placeholder="email@domain">
+    <br>
+    <br>
+    <input type="password" name="pass" value="" placeholder="Password">
+    <hr>
+    <p class="submit"><input class="btn btn-success" type="submit" name="signin" value="Add User"></p>
+
+</form>

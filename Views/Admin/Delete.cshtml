@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Delete";
+}
+@model StackTutorial.Models.User
+<h2>Delete</h2>
+
+<form action="/Admin/DeleteConfirm/@Model.Id" method="post">
+    <p>Id : @Model.Id</p>
+    <p>Name : @Model.email</p>
+    <p>Password : @Model.Password</p>
+    <input type="submit" value="Delete" />
+
+</form>

@@ -1,0 +1,230 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript" src="~/Scripts/jquery-2.1.3.js"></script>
+    <!-- Le styles  -->
+    <link href="/Content/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/assets/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="/Content/assets/css/docs.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+     
+
+#myModal {
+    width: 650px;
+    height: 550px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    right: 50%;
+    margin-top: -25px;
+    margin-left: -200px;
+
+    padding: 20px;
+}
+
+    </style>
+   
+    
+</head>
+<body>
+
+   
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                @Html.ActionLink("StackTutz", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+               
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li><a href="@Url.Action("Index", "Home")">   <span class="glyphicon glyphicon-home">     </span> Home</a></li>
+                    <li>
+                        <a href="@Url.Action("About", "Home")">
+                            <span class="glyphicon glyphicon-info-sign">     </span> About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Contact", "Home")">
+                            <span class="glyphicon glyphicon-envelope">     </span> Contact</a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <span class=" glyphicon glyphicon-chevron-down"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("AddArticle", "Home")">Add Article</a></li>
+                            <li><a href="@Url.Action("Tags", "Home")">Tags</a></li>
+                            <li class="divider"></li>
+                            <li><a href="@Url.Action("ViewQuestion", "Home")">Questions</a></li>
+                            <li><a href="@Url.Action("AskQues", "Home")">Ask Question</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                   
+                       
+                     
+                   
+                <form class="navbar-form navbar-left" action="/Home/Search" method="get" id="search-form" role="search" >
+
+                    <div class="form-group form-slide" style="overflow: hidden;">
+                        <input id="autocomplete" type="text" class="form-control" placeholder="Search" />
+                    </div>
+                    <button id="seab" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Search</button>
+                </form>
+              
+                
+                    @Html.Partial("_LoginPartial")
+                
+                
+            </div>
+        </div>
+    </div>
+    <br><hr>
+   <div class="col-md-offset-1">
+    <div class="row">
+        <div class="col-md-5">
+            <aside style="padding-bottom: 20px;">
+                <a href="#"> <img src="/images/logo1.jpg" alt="StackTutz.com" /></a>
+                </aside>
+</div>
+        <div class="col-md-4">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("AddArticle", "Home")">Add Article</a></li>
+                <li><a href="@Url.Action("Tags", "Home")">Tags</a></li>
+                <li><a href="@Url.Action("ViewQuestion", "Home")">Question</a></li>
+                <li><a href="@Url.Action("AskQues", "Home")">Ask Question</a></li>
+            </ol>
+        </div>
+    </div></div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - StackTutz</p>
+        </footer>
+    </div>
+  
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="Scripts/jquery.js"></script>
+    <script src="Scripts/jquery-ui.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#b').click(function () {
+
+                                var userName = $('#email').val();
+
+                                $('#checking').show();
+                                $.getJSON("/Account/CheckUserName?e=" + userName, function (data) {
+
+                                    $('#checking').hide();
+                                    $('#result').text(data);
+                                });
+
+            });
+
+
+            $('#seab').click(function () {
+               // e.preventDefault();
+                $('#autocomplete').text($('#autocomplete').val());
+                var value = $('#autocomplete').val();
+                if (value == "") {
+                    alert("Please specify some text in search field.");
+                    return false;
+                }
+
+                
+               // alert(v);
+                $.getJSON("/Home/Search?v=" + value, function (data) {
+
+                    if(data == null || data=="")
+                    {
+
+                        $('#p1').text("No results found.");
+                    }
+                    else{
+                        for(var i=0; i< data.length ;i++)
+                        {
+
+                            <a href="@Url.Action("Tags", "Home")"> $('#searchResultBody').append("<p>" + data[i].title + "</p>") </a>
+                            
+                        }
+                    }
+
+
+                });
+                $('#myModal').modal('show');
+
+
+
+            });
+
+
+
+            var availableTags = [
+                "C++",
+                "C++"
+
+            ];
+            $("#autocomplete").autocomplete({
+                source: availableTags
+            });
+
+            $("#tabs").tabs();
+
+
+            $("#dialog").dialog({
+                autoOpen: false,
+                width: 300,
+            });
+
+            // Link to open the dialog
+
+        });</script>
+
+
+    <!-- Search Dialog Modal -->
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Search Results</h4>
+                </div>
+                <div class="modal-body" id="searchResultBody">
+                    <p id="p1"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+</body>
+</html>

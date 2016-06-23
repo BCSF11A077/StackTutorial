@@ -1,0 +1,24 @@
+﻿
+    @{
+        ViewBag.Title = "Questions";
+    }
+
+<h4> <p align="right"> @ViewBag.x.session</p></h4>
+@*@Model List<stacktutorial.models.question>*@
+    <h2>Questions</h2>
+
+    <div class="panel panel-default">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+
+            @foreach (var s in Model)
+            {
+                <p><h4>Question: </h4>@s.Ques</p>
+                <h4><p>Posted by: @s.User.name</p></h4>
+                <br>
+                <br>
+
+            }
+
+        </div>
+    </div>
